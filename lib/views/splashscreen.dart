@@ -1,6 +1,6 @@
 import 'package:blocstructure/components/parentwidget/customparentbackground.dart';
 import 'package:blocstructure/configs/routes/route_name.dart';
-import 'package:blocstructure/configs/routes/routes.dart';
+import 'package:blocstructure/services/splash/splash_services.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,18 +12,14 @@ class Splashscreen extends StatefulWidget {
 }
 
 class _SplashscreenState extends State<Splashscreen> {
+  SplashServices _splashServices = SplashServices();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    Future.delayed(Duration(seconds: 4), () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        RouteName.homeScreen,
-        (route) => false,
-      );
-    });
+    _splashServices.isLogin(context);
   }
 
   @override
