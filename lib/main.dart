@@ -1,4 +1,5 @@
-import 'package:blocstructure/views/splashscreen.dart';
+import 'package:blocstructure/configs/routes/route_name.dart';
+import 'package:blocstructure/configs/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Splashscreen(),
+          initialRoute: RouteName.splashScreen,
+          onGenerateRoute: Routes.generateRoute,
         );
       },
     );

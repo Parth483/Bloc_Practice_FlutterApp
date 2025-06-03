@@ -1,5 +1,6 @@
 import 'package:blocstructure/components/parentwidget/customparentbackground.dart';
-import 'package:blocstructure/sample.dart';
+import 'package:blocstructure/configs/routes/route_name.dart';
+import 'package:blocstructure/configs/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -17,9 +18,9 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
 
     Future.delayed(Duration(seconds: 4), () {
-      Navigator.pushAndRemoveUntil(
+      Navigator.pushNamedAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => Sample()),
+        RouteName.homeScreen,
         (route) => false,
       );
     });
