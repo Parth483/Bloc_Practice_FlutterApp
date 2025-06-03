@@ -1,4 +1,4 @@
-import 'package:blocstructure/sample.dart';
+import 'package:blocstructure/views/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,11 +15,8 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          ),
-          home: const Sample(),
+          debugShowCheckedModeBanner: false,
+          home: Splashscreen(),
         );
       },
     );
