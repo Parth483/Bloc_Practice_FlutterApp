@@ -19,7 +19,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   bloc: ^9.0.0
   get_it: ^8.0.3
-  freezed: ^3.0.6
+  # freezed: ^3.0.6
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   fluttertoast: ^8.2.12
@@ -38,6 +38,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.4.15
   json_serializable: ^6.9.5
+  freezed: ^3.0.6 # <- move this here
 
 
 # The following section is specific to Flutter packages.

@@ -29,20 +29,37 @@ class NetworkServiceApi implements BaseApiServices {
   }
 
   @override
-  Future<dynamic> postApi(String url, data) async {
+  Future<dynamic> postApi(
+    String url,
+    data, {
+    bool needHeader = false,
+    Map<String, String>? headers,
+  }) async {
     dynamic jsonResponse;
+
+    print(url);
+    print(data);
+
+    var datacode = jsonEncode(data);
+
     try {
       final response = await http
-          .post(Uri.parse(url), body: data)
+          .post(
+            Uri.parse(url),
+            body: datacode,
+            headers: needHeader ? headers : null,
+          )
           .timeout(const Duration(seconds: 50));
 
       jsonResponse = returnResponse(response);
 
-      if (response.statusCode == 200) {}
+      // Optional: Debug log
+      print("Status Code: ${response.statusCode}");
+      print("Response: ${response.body}");
     } on SocketException {
-      throw NoInternetExecption('');
+      throw NoInternetExecption('No internet connection');
     } on TimeoutException {
-      throw FetchDataException('Time out try again');
+      throw FetchDataException('Request timed out');
     }
 
     return jsonResponse;
@@ -89,18 +106,22 @@ class NetworkServiceApi implements BaseApiServices {
   }
 
   dynamic returnResponse(http.Response response) {
-    switch (response) {
+    switch (response.statusCode) {
+      // ignore: constant_pattern_never_matches_value_type
       case 200:
         dynamic jsonResponse = jsonDecode(response.body);
         return jsonResponse;
 
+      // ignore: constant_pattern_never_matches_value_type
       case 400:
         dynamic jsonResponse = jsonDecode(response.body);
         return jsonResponse;
 
+      // ignore: constant_pattern_never_matches_value_type
       case 401:
         throw UnauthorisedException();
 
+      // ignore: constant_pattern_never_matches_value_type
       case 500:
         throw FetchDataException(
           'Error communicating with server${response.statusCode}',
